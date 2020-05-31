@@ -5,7 +5,7 @@ var CLOUD_HEIGHT = 270;
 var CLOUD_X = 100;
 var CLOUD_Y = 10;
 var CLOUD_Y_BOTTOM = CLOUD_Y + CLOUD_HEIGHT;
-var GAP = 20;
+var GAP = 15;
 var BAR_GAP = 50;
 var FONT_GAP = 20;
 var BAR_HEIGHT = 150;
@@ -26,7 +26,7 @@ var getMaxElement = function(arr) {
   return maxElement;
 };
 window.renderStatistics = function(ctx, players, times) {
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + 10, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, CLOUD_X + 10, CLOUD_Y + 10, 'rgba(0, 0, 0, 0.7)'); //Как быть здесь со значением У?
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
  ctx.font = '16px PT Mono';
@@ -39,7 +39,7 @@ var maxTime = getMaxElement(times);
 
 for (var i = 0; i < players.length; i++) {
   ctx.fillText(players[i], CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y_BOTTOM - GAP);
-  ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y_BOTTOM - GAP - FONT_GAP, BAR_WIDTH, - (BAR_HEIGHT * times[i] / maxTime));
-  ctx.fillText('times[i]', CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y_BOTTOM - GAP - (BAR_HEIGHT * times[i] / maxTime) - FONT_GAP); //пока непонятно как настроить отступы//
+  ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y_BOTTOM - GAP - (BAR_HEIGHT * Math.round(times[i]) / maxTime) - FONT_GAP - GAP); //пока непонятно как настроить отступы//
+  ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y_BOTTOM - GAP - FONT_GAP, BAR_WIDTH, - (BAR_HEIGHT * Math.round(times[i]) / maxTime)); //можно ли по-другому оформить округление?
 };
 };
