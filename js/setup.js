@@ -15,29 +15,33 @@ document.querySelector('.setup-similar').classList.remove('hidden');
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-// Обьекты с данными магов. (Тут туплю, не понимаю как вывести в цикл)
-var wizards = [
-  {
-    name: NAMES[Math.floor(Math.random() * NAMES.length)] + ' ' + SURNAMES[Math.floor(Math.random() * SURNAMES.length)],
-    coatColor: COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)],
-    eyesColor: EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)],
-  },
-  {
-    name: NAMES[Math.floor(Math.random() * NAMES.length)] + ' ' + SURNAMES[Math.floor(Math.random() * SURNAMES.length)],
-    coatColor: COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)],
-    eyesColor: EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)],
-  },
-  {
-    name: NAMES[Math.floor(Math.random() * NAMES.length)] + ' ' + SURNAMES[Math.floor(Math.random() * SURNAMES.length)],
-    coatColor: COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)],
-    eyesColor: EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)],
-  },
-  {
-    name: NAMES[Math.floor(Math.random() * NAMES.length)] + ' ' + SURNAMES[Math.floor(Math.random() * SURNAMES.length)],
-    coatColor: COAT_COLOR[Math.floor(Math.random() * COAT_COLOR.length)],
-    eyesColor: EYES_COLOR[Math.floor(Math.random() * EYES_COLOR.length)],
+// Функция для получения целого случайного числа включительно
+var getRandom = function (min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// Функция создания свойств мага
+var generateWizard = function () {
+  var wizard = {
+    name: NAMES[getRandom(0, NAMES.length)] + ' ' + SURNAMES[getRandom(0, SURNAMES.length)],
+    coatColor: COAT_COLOR[getRandom(0, COAT_COLOR.length)],
+    eyesColor: EYES_COLOR[getRandom(0, EYES_COLOR.length)],
+  };
+  return wizard;
+};
+
+// Функция для создания массива магов
+var generateWizards = function () {
+  var wizards = [];
+  for (var i = 0; i < totalWizards; i++) {
+    wizards.push(generateWizard());
   }
-];
+  return wizards;
+};
+
+var wizards = generateWizards();
 
 // Функция для отрисовки мага.
 var renderWizard = function () {
@@ -45,7 +49,6 @@ var renderWizard = function () {
   wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
-
   return wizardElement;
 };
 
