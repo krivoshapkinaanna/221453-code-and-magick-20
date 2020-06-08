@@ -25,9 +25,9 @@ var getRandom = function (min, max) {
 // Функция создания свойств мага
 var generateWizard = function () {
   var wizard = {
-    name: NAMES[getRandom(0, NAMES.length)] + ' ' + SURNAMES[getRandom(0, SURNAMES.length)],
-    coatColor: COAT_COLOR[getRandom(0, COAT_COLOR.length)],
-    eyesColor: EYES_COLOR[getRandom(0, EYES_COLOR.length)],
+    name: NAMES[getRandom(0, NAMES.length - 1)] + ' ' + SURNAMES[getRandom(0, SURNAMES.length - 1)],
+    coatColor: COAT_COLOR[getRandom(0, COAT_COLOR.length - 1)],
+    eyesColor: EYES_COLOR[getRandom(0, EYES_COLOR.length - 1)],
   };
   return wizard;
 };
