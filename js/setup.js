@@ -3,7 +3,7 @@ var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Крис�
 var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-var totalWizards = 4;
+var TOTALWIZARDS = 4;
 
 // Покажет блок с похожими магами.
 var userDialog = document.querySelector('.setup');
@@ -35,7 +35,7 @@ var generateWizard = function () {
 // Функция для создания массива магов
 var generateWizards = function () {
   var wizards = [];
-  for (var i = 0; i < totalWizards; i++) {
+  for (var i = 0; i < TOTALWIZARDS; i++) {
     wizards.push(generateWizard());
   }
   return wizards;
@@ -44,18 +44,20 @@ var generateWizards = function () {
 var wizards = generateWizards();
 
 // Функция для отрисовки мага.
-var renderWizard = function () {
+var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
   return wizardElement;
 };
 
 // Добавление магов в список.
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < totalWizards; i++) {
-  fragment.appendChild(renderWizard(wizards[i]));
-}
-similarListElement.appendChild(fragment);
-
+var renderWizards = function () {
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < TOTALWIZARDS; i++) {
+    fragment.appendChild(renderWizard(wizards[i]));
+  }
+  similarListElement.appendChild(fragment);
+};
+renderWizards();
