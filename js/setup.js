@@ -9,7 +9,8 @@ var FIREBALL_WRAP = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
-var saveButton = setup.querySelector('.setup-submit');
+var setupForm = setup.querySelector('.setup-wizard-form');
+
 
 var onPopupEscPress = function (evt) {
   if (evt.key === 'Escape') {
@@ -38,7 +39,7 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-saveButton.addEventListener('click', function () {
+setupForm.addEventListener('submit', function () {
   closePopup();
 });
 
@@ -50,8 +51,6 @@ setupClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
-
-
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 
