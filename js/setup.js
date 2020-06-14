@@ -4,10 +4,13 @@ var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 var TOTALWIZARDS = 4;
+var FIREBALL_WRAP = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
+var saveButton = setup.querySelector('.setup-submit');
+
 var onPopupEscPress = function (evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
@@ -35,6 +38,10 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
+saveButton.addEventListener('click', function () {
+  closePopup();
+});
+
 setupClose.addEventListener('click', function () {
   closePopup();
 });
@@ -43,6 +50,8 @@ setupClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
+
+
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 
