@@ -12,10 +12,11 @@ var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
 var setupForm = setup.querySelector('.setup-wizard-form');
+var userNameInput = document.querySelector('.setup-user-name');
 
 // Задали переменную обработчика Escape
 var onPopupEscPress = function (evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === 'Escape' && document.activeElement !== userNameInput) {
     evt.preventDefault();
     setup.classList.add('hidden');
   }
@@ -111,6 +112,7 @@ var renderWizards = function () {
 };
 renderWizards();
 
+
 // Смена цвета фаербола по клику
 var setupFireball = setup.querySelector('.setup-fireball-wrap');
 setupFireball.addEventListener('click', function () {
@@ -136,7 +138,7 @@ setupEyes.addEventListener('click', function () {
 });
 
 // Валидация формы имени
-var userNameInput = document.querySelector('.setup-user-name');
+
 
 userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.valueMissing) {
