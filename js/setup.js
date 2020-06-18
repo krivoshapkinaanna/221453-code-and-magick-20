@@ -138,8 +138,6 @@ setupEyes.addEventListener('click', function () {
 });
 
 // Валидация формы имени
-
-
 userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.valueMissing) {
     userNameInput.setCustomValidity('Обязательное поле');
@@ -148,7 +146,7 @@ userNameInput.addEventListener('invalid', function () {
   }
 });
 
-// Вывод кастомного сообщения при вводу в форму
+// Вывод кастомного сообщения при вводe в форму (Решила оставить, чтобы не забыть)
 userNameInput.addEventListener('input', function () {
   var valueLength = userNameInput.value.length;
 
